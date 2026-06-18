@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class RaceController {
 
-    @GetMapping("/boasvindas")
-    public String boasvindas(){
-        return "Boas vindas AIRPLANE";
+    @GetMapping("/boasvindass")
+    public String boasvindass(){
+        return "Boas vindas RACE";
     }
 }
