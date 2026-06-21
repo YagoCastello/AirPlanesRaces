@@ -26,6 +26,7 @@ public class AirplaneModel {
     @Column(name = "fabricante")
     private String fabricante;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private Tipo tipo;
 

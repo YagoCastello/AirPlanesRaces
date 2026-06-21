@@ -22,8 +22,9 @@ public class RaceModel {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "colocao")
-    private Colocacao colocao;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "colocacao")
+    private Colocacao colocacao;
 
     @Column(name = "premio")
     private float premio;
