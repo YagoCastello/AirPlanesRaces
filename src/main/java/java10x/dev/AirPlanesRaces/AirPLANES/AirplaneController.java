@@ -2,10 +2,19 @@ package java10x.dev.AirPlanesRaces.AirPLANES;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping
+@RequestMapping("/airplanes")
 public class AirplaneController {
-@GetMapping("/boasvindas")
+
+    AirplaneService airplaneService;
+
+    public AirplaneController(AirplaneService airplaneService) {
+        this.airplaneService = airplaneService;
+    }
+
+    @GetMapping("/boasvindas")
     public String boasvindas(){
     return "Boas vindas AIRPLANE";
 }
@@ -24,9 +33,12 @@ public class AirplaneController {
 }
 // Mostrar todos os Airplanes(READ)
 @GetMapping("/todos")
-public String listarTodos(){
-    return "VARIOS AIRPLANES";
+public List<AirplaneModel> listarAirplane(){
+        return  airplaneService.listarAirplane();
 }
+
+
+
 // Alterar dados dos Airplanes(UPDATE)
 @PutMapping("/alterarid")
     public String alterarAirplaneId(){

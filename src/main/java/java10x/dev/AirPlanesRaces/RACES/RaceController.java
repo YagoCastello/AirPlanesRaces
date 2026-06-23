@@ -1,14 +1,23 @@
 package java10x.dev.AirPlanesRaces.RACES;
 
+import java10x.dev.AirPlanesRaces.AirPLANES.AirplaneService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping
+@RequestMapping("/race")
 public class RaceController {
 
+    private final RaceService raceService;
+
+    public RaceController(RaceService raceService) {
+        this.raceService = raceService;
+    }
+
     @GetMapping("/listar")
-    public String listarRace() {
-        return "Listando RACE";
+    public List<RaceModel> listarRaces(){
+        return raceService.listarRaces();
     }
 
     @PostMapping("/criar")

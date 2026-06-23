@@ -1,5 +1,6 @@
 package java10x.dev.AirPlanesRaces.AirPLANES;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java10x.dev.AirPlanesRaces.RACES.RaceModel;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class AirplaneModel {
     private Tipo tipo;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "races_id")
     private RaceModel races;
 
