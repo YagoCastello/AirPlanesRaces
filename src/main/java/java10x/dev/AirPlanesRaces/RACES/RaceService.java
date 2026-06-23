@@ -3,6 +3,7 @@ package java10x.dev.AirPlanesRaces.RACES;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RaceService {
@@ -15,5 +16,10 @@ public class RaceService {
     //Listar races
     public List<RaceModel> listarRaces(){
         return raceRepository.findAll();
+    }
+
+    public RaceModel listarRacesPorId(Long id){
+        Optional<RaceModel> racePorId = raceRepository.findById(id);
+        return  racePorId.orElse(null);
     }
 }

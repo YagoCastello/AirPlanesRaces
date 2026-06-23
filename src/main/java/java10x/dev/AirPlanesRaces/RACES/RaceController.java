@@ -1,8 +1,6 @@
 package java10x.dev.AirPlanesRaces.RACES;
 
-import java10x.dev.AirPlanesRaces.AirPLANES.AirplaneService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,7 +17,11 @@ public class RaceController {
     public List<RaceModel> listarRaces(){
         return raceService.listarRaces();
     }
-
+    // Mostar Airplane por ID(READ)
+    @GetMapping("/listar/{id}")
+    public RaceModel listarRacePorID(@PathVariable Long id){
+        return raceService.listarRacesPorId(id);
+    }
     @PostMapping("/criar")
     public String CriarRace(){
         return "Criando uma race";

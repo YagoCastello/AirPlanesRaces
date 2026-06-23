@@ -1,7 +1,6 @@
 package java10x.dev.AirPlanesRaces.AirPLANES;
 
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -27,12 +26,15 @@ public class AirplaneController {
     }
 
 // Mostar Airplane por ID(READ)
-@GetMapping("/todosID")
-    public String listarTodosID(){
-    return "VARIOS AIRPLANES POR ID";
+@GetMapping("/listar/{id}")
+    public AirplaneModel listarAirplanePorID(@PathVariable Long id){
+    return airplaneService.listarAirplanePorId(id);
 }
+
+
+
 // Mostrar todos os Airplanes(READ)
-@GetMapping("/todos")
+@GetMapping("/listar")
 public List<AirplaneModel> listarAirplane(){
         return  airplaneService.listarAirplane();
 }

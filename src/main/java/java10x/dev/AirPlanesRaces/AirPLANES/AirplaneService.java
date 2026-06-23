@@ -3,6 +3,8 @@ package java10x.dev.AirPlanesRaces.AirPLANES;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AirplaneService {
 
@@ -16,5 +18,11 @@ public class AirplaneService {
     // Listar todos os meus airplanes
     public List<AirplaneModel> listarAirplane(){
         return airplaneRepository.findAll();
+    }
+
+    public AirplaneModel listarAirplanePorId(Long id){
+        Optional<AirplaneModel> airplanePorId = airplaneRepository.findById(id);
+        return airplanePorId.orElse(null);
+
     }
 }
