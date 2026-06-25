@@ -44,7 +44,7 @@ public List<AirplaneModel> listarAirplane(){
 // Alterar dados dos Airplanes(UPDATE)
 @PutMapping("/alterarid")
     public String alterarAirplaneId(){
-    return "ALTERAR AIRPLANEEEEE";
+    return "ALTERAR AIRPLANEEEEEssssssssssss";
 }
 
 // Deletar Airplane(DELETE)
