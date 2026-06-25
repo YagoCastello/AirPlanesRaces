@@ -25,4 +25,14 @@ public class AirplaneService {
         return airplanePorId.orElse(null);
 
     }
+
+
+    public AirplaneModel criarAirplane(AirplaneModel airplane){
+        return airplaneRepository.save(airplane);
+    }
+
+    //Deletar airplane
+    public void deletarAirplanePorId(Long id){
+        airplaneRepository.deleteById(id);
+    }
 }

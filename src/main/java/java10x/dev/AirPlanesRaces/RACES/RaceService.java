@@ -22,4 +22,14 @@ public class RaceService {
         Optional<RaceModel> racePorId = raceRepository.findById(id);
         return  racePorId.orElse(null);
     }
+
+    public RaceModel criarRace(RaceModel race){
+        return raceRepository.save(race);
+    }
+
+    //deletar
+    public void deletarRacePorId(Long id){
+        raceRepository.deleteById(id);
+    }
+
 }

@@ -21,8 +21,8 @@ public class AirplaneController {
 
     // Adicionar Airplane (CREATE)
     @PostMapping("/criar")
-    public String criarAirplane(){
-        return "Airplane criado";
+    public AirplaneModel criarAirplane(@RequestBody AirplaneModel airplane){
+        return airplaneService.criarAirplane(airplane);
     }
 
 // Mostar Airplane por ID(READ)
@@ -48,9 +48,9 @@ public List<AirplaneModel> listarAirplane(){
 }
 
 // Deletar Airplane(DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarAirplane(){
-    return "DELETAR AIRPLANE";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarAirplane(@PathVariable Long id){
+    airplaneService.deletarAirplanePorId(id);
     }
 
 

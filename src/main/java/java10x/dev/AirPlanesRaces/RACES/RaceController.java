@@ -23,8 +23,8 @@ public class RaceController {
         return raceService.listarRacesPorId(id);
     }
     @PostMapping("/criar")
-    public String CriarRace(){
-        return "Criando uma race";
+    public RaceModel CriarRace(@RequestBody RaceModel race){
+        return raceService.criarRace(race);
 }
 
 @PutMapping("/alterar")
@@ -33,8 +33,8 @@ public class RaceController {
 
 }
 @DeleteMapping("/deletar")
-    public  String deletarRace(){
-        return "RACE deletada!";
+    public  void deletarRace(@PathVariable Long id){
+    raceService.deletarRacePorId(id);
 }
 
 }
