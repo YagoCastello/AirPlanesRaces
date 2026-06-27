@@ -1,5 +1,6 @@
 package java10x.dev.AirPlanesRaces.AirPLANES;
 
+import java10x.dev.AirPlanesRaces.AirPLANES.AirplanesDTO.AirplaneDTO;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class AirplaneController {
 
     // Adicionar Airplane (CREATE)
     @PostMapping("/criar")
-    public AirplaneModel criarAirplane(@RequestBody AirplaneModel airplane){
+    public AirplaneDTO criarAirplane(@RequestBody AirplaneDTO airplane){
         return airplaneService.criarAirplane(airplane);
     }
 
@@ -42,9 +43,10 @@ public List<AirplaneModel> listarAirplane(){
 
 
 // Alterar dados dos Airplanes(UPDATE)
-@PutMapping("/alterarid")
-    public String alterarAirplaneId(){
-    return "ALTERAR AIRPLANEEEEEssssssssssss";
+@PutMapping("/alterar/{id}")
+    public AirplaneModel alterarAirplaneId(@PathVariable Long id, @RequestBody AirplaneModel airplaneAlterado){
+        return airplaneService.atualizarAirplane(id,airplaneAlterado);
+
 }
 
 // Deletar Airplane(DELETE)

@@ -36,4 +36,7 @@ public class AirplaneModel {
     @JoinColumn(name = "races_id")
     private RaceModel races;
 
+    @Column(name = "piloto")
+    private String piloto;
+
 }
