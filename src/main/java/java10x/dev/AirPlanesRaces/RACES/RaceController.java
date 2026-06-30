@@ -1,5 +1,6 @@
 package java10x.dev.AirPlanesRaces.RACES;
 
+import java10x.dev.AirPlanesRaces.RACES.RacesDTO.RaceDTO;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class RaceController {
         return raceService.listarRacesPorId(id);
     }
     @PostMapping("/criar")
-    public RaceModel CriarRace(@RequestBody RaceModel race){
-        return raceService.criarRace(race);
+    public RaceDTO CriarRace(@RequestBody RaceDTO raceDTO){
+        return raceService.criarRace(raceDTO);
 }
 
 @PutMapping("/alterar")

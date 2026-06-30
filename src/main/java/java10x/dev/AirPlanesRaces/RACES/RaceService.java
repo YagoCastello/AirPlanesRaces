@@ -1,5 +1,7 @@
 package java10x.dev.AirPlanesRaces.RACES;
 
+import java10x.dev.AirPlanesRaces.RACES.RacesDTO.RaceDTO;
+import java10x.dev.AirPlanesRaces.RACES.RacesDTO.RaceMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +10,12 @@ import java.util.Optional;
 @Service
 public class RaceService {
     private final RaceRepository raceRepository;
+    private final RaceMapper raceMapper;
 
-    public RaceService(RaceRepository raceRepository) {
+
+    public RaceService(RaceRepository raceRepository, RaceMapper raceMapper) {
         this.raceRepository = raceRepository;
+        this.raceMapper = raceMapper;
     }
 
     //Listar races
@@ -23,8 +28,10 @@ public class RaceService {
         return  racePorId.orElse(null);
     }
 
-    public RaceModel criarRace(RaceModel race){
-        return raceRepository.save(race);
+    public RaceDTO criarRace(RaceDTO raceDTO){
+        RaceModel race = raceMapper.map(raceDTO);
+        race = raceRepository.save(race);
+        return raceMapper.map(race);
     }
 
     //deletar

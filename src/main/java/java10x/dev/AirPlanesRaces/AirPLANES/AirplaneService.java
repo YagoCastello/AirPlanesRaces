@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AirplaneService {
@@ -19,13 +21,17 @@ public class AirplaneService {
     }
 
     // Listar todos os meus airplanes
-    public List<AirplaneModel> listarAirplane(){
-        return airplaneRepository.findAll();
+    public List<AirplaneDTO> listarAirplane(){
+        List<AirplaneModel> airplanes =airplaneRepository.findAll();
+        return airplanes.stream()
+                .map(airplaneMapper::map)
+                .collect(Collectors.toList());
+
     }
 
-    public AirplaneModel listarAirplanePorId(Long id){
+    public AirplaneDTO listarAirplanePorId(Long id){
         Optional<AirplaneModel> airplanePorId = airplaneRepository.findById(id);
-        return airplanePorId.orElse(null);
+        return airplanePorId.map(airplaneMapper::map).orElse(null);
 
     }
 
@@ -37,12 +43,16 @@ public class AirplaneService {
     }
 
     //Atualizar ninja
-    public AirplaneModel atualizarAirplane(Long id,AirplaneModel airplaneAtualizado){
-        if(airplaneRepository.existsById(id)){
-            airplaneAtualizado.setId(id);
-            return  airplaneRepository.save(airplaneAtualizado);
-        }
-        return null;
+    public AirplaneDTO atualizarAirplane(Long id,AirplaneDTO airplaneDTO){
+       Optional<AirplaneModel> airplaneExistente = airplaneRepository.findById(id);
+       if(airplaneExistente.isPresent()){
+           AirplaneModel airplaneAtualizado = airplaneMapper.map(airplaneDTO);
+           airplaneAtualizado.setId(id);
+           AirplaneModel airplaneSalvo = airplaneRepository.save(airplaneAtualizado);
+           return airplaneMapper.map(airplaneSalvo);
+       }
+       return null;
+
     }
 
     //Deletar airplane
